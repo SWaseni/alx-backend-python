@@ -68,27 +68,27 @@ class TestGetJson(unittest.TestCase):
             self,
             test_url: str,
             test_payload: Dict,
-OBOBOB            ) -> None:
+            ) -> None:
         '''Tests `get_json`'s output.
         '''
 
         attrs = {'json.return_value': test_payload}
 
-OBOBOB        with patch("requests.get", return_value=Mock(**attrs)) as req_get:
+        with patch("requests.get", return_value=Mock(**attrs)) as req_get:
             self.assertEqual(get_json(test_url), test_payload)
             req_get.assert_called_once_with(test_url)
-OBOBOB
+
 
 class TestMemoize(unittest.TestCase):
     """Tests the `memoize` function."""
-OBOBOB    def test_memoize(self) -> None:
+    def test_memoize(self) -> None:
         """Tests `memoize`'s output."""
         class TestClass:
-OBOBOB            def a_method(self):
-OBOBOB                return 42
+            def a_method(self):
+               return 42
 
             @memoize
-OBOBOB            def a_property(self):
+            def a_property(self):
                 return self.a_method()
         with patch.object(
                 TestClass,
